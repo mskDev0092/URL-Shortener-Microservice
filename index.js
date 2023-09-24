@@ -24,10 +24,7 @@ app.get('/', function(req, res) {
 
 // Your first API endpoint
 app.post('/api/shorturl', function(req, res){
-  
   const urlString = req.body.url;
-  
-  
   const lookDns = dns.lookup(urlparser.parse(urlString).hostname , async(req , validAddress) => {
    if(!validAddress){
     res.json({error: "Invalid URL"})
@@ -37,21 +34,20 @@ app.post('/api/shorturl', function(req, res){
       urlString,
       short_url: countUrls
     }
-
-    const respond = await storeUrls.insertOne(urlStore);
+   const respond = await storeUrls.insertOne(urlStore);
     console.log(respond);
     res.json({
       original_url: urlString,
       short_url: countUrls
     });
- 
-
-
    }
   })
-  
-  });
-
+ });
+app.get("/api/short_url/:short_url" , async (req ,res) => {
+  const shorturl = req.params.short_url;
+  const urlStore = await storeUrls.findOne({ short_url: +shorturl })
+  res.redirect(urlStore.urlString); 
+})
 
 app.listen(port, function() {
   console.log(`Listening on port ${port}`);

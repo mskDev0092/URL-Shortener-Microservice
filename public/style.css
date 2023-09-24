@@ -1,10 +1,15 @@
 body {
     font-family: Arial, sans-serif;
     font-size: 16px;
-    color: #222;
-    background-color: #fff;
+    color: #f5f3f3;
+    background-color: black;
     text-align: center;
     line-height: 1.4em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid white;
   }
   
   main {
@@ -23,7 +28,7 @@ body {
   }
   
   a {
-    color: #2574a9;
+    color: #a92525;
   }
   
   form {
@@ -43,4 +48,12 @@ body {
   input[type='text'] {
     width: 220px;
     text-align: center;
+  }
+
+  .info{
+    margin: 30px;
+    padding: 20px;
+    max-width: 600px;
+    
+    background-color: black;
   }
